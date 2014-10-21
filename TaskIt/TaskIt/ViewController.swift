@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Start Closure example #2
     // Equivalent to example #1
-    taskArray = taskArray.sorted {
+    baseArray[0] = baseArray[0].sorted {
       (taskOne: TaskModel, taskTwo: TaskModel) -> Bool in
       return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
     }
@@ -70,7 +70,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       let indexPath                           = self.tableView.indexPathForSelectedRow()
       // alternatively the following is the same
       // let indexPath = sender as NSIndexPath
-      let thisTask              = baseArray[indexPath!.section][row]
+      let thisTask              = baseArray[indexPath!.section][indexPath!.row]
       detailsVC.detailTaskModel = thisTask
       detailsVC.mainVC          = self
     }
