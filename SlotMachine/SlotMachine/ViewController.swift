@@ -37,6 +37,11 @@ class ViewController: UIViewController {
   // Slots Array
   var slots:[[Slot]] = []
   
+  // Stats
+  var credits: Int    = 0
+  var currentBet: Int = 0
+  var winnings: Int   = 0
+  
   // Constants  // 'k' - constant
   let kMarginForView:CGFloat = 10.0
   let kSixth:CGFloat         = 1.0/6.0
@@ -55,32 +60,70 @@ class ViewController: UIViewController {
   //IBActions
   
   func resetButtonPressed(button: UIButton) {
-    println("Reset button pressed")
+    hardReset()
   }
   
   func betOneButtonPressed(button: UIButton) {
-    println("Button one pressed")
+    if credits <= 0 {
+      showAlertWithText(header: "No More Credits", message: "Reset Game")
+    }
+    else {
+      if currentBet < 5 {
+        currentBet += 1
+        credits -= 1
+      }
+      else {
+        // TODO: Refactor UI to only bet 5 or less
+        showAlertWithText(message: "You can only bet 5 credits at a time!")
+      }
+      updateMainView()
+    }
   }
   
   func betMaxButtonPressed(button: UIButton) {
-    println("Bet max button pressed")
+    if credits <= 5 {
+      showAlertWithText(header: "No Enough Credits", message: "Bet Less")
+    }
+    else {
+      if currentBet < 5 {
+        credits -= 5 - currentBet
+        currentBet = 5
+        updateMainView()
+      }
+      else {
+        showAlertWithText(message: "You can only bet 5 credits at a time!")
+      }
+    }
   }
   
   func spinButtonPressed(button: UIButton) {
-    // clear out existing images vice stacking new images on old ones
-    removeSlotImageViews()
-    slots = Factory.createSlots()
+    if currentBet < 1 {
+      showAlertWithText(message: "Must bet before spinning")
+    }
+    else {
+      // clear out existing images vice stacking new images on old ones
+      removeSlotImageViews()
+      slots = Factory.createSlots()
     
-    setupSecondContainer(self.secondContainer)
+      setupSecondContainer(self.secondContainer)
+      
+      var winningMultiplier = SlotBrain.computeWinnings(slots)
+      winnings              = winningMultiplier * currentBet
+      credits               += winnings
+      currentBet            = 0
+    
+      updateMainView()
+    }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupContainerViews()
     setupFirstContainer(firstContainer)
-    setupSecondContainer(secondContainer)
     setupThirdContainter(thirdContainer)
     setupFourthContainter(fourthContainer)
+    
+    hardReset()
   }
   
   func setupContainerViews() {
@@ -157,15 +200,15 @@ class ViewController: UIViewController {
     betLabel.backgroundColor = UIColor.darkGrayColor()
     containerView.addSubview(betLabel)
     
-    winnerPaidLabel                 = UILabel()
-    winnerPaidLabel.text            = "000000"
-    winnerPaidLabel.textColor       = UIColor.redColor()
-    winnerPaidLabel.font            = UIFont(name: "Menlo-Bold", size: 16)
-    winnerPaidLabel.sizeToFit()
-    winnerPaidLabel.center          = CGPointMake(containerView.frame.width * kSixth * 5, containerView.frame.height * kThird)
-    winnerPaidLabel.textAlignment   = NSTextAlignment.Center
-    winnerPaidLabel.backgroundColor = UIColor.darkGrayColor()
-    containerView.addSubview(winnerPaidLabel)
+    winnerPaidTitleLabel                 = UILabel()
+    winnerPaidTitleLabel.text            = "000000"
+    winnerPaidTitleLabel.textColor       = UIColor.redColor()
+    winnerPaidTitleLabel.font            = UIFont(name: "Menlo-Bold", size: 16)
+    winnerPaidTitleLabel.sizeToFit()
+    winnerPaidTitleLabel.center          = CGPointMake(containerView.frame.width * kSixth * 5, containerView.frame.height * kThird)
+    winnerPaidTitleLabel.textAlignment   = NSTextAlignment.Center
+    winnerPaidTitleLabel.backgroundColor = UIColor.darkGrayColor()
+    containerView.addSubview(winnerPaidTitleLabel)
     
     creditsTitleLabel           = UILabel()
     creditsTitleLabel.text      = "Credits"
@@ -252,5 +295,34 @@ class ViewController: UIViewController {
       
     }
   }
+  
+  func hardReset() {
+    removeSlotImageViews()
+    
+    // Clear out array keeping capicity (don't deallocate memory)
+    slots.removeAll(keepCapacity: true)
+
+    credits    = 50
+    winnings   = 0
+    currentBet = 0
+    
+    setupSecondContainer(secondContainer)
+    updateMainView()
+  }
+  
+  func updateMainView() {
+    creditsLabel.text         = "\(credits)"
+    betLabel.text             = "\(currentBet)"
+    winnerPaidTitleLabel.text = "\(winnings)"
+  }
+  
+  func showAlertWithText(header: String = "Warning", message: String) {
+    var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    // allow for dismissal of alert
+    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+    // completion - callback hook
+    presentViewController(alert, animated: true, completion: nil)
+  }
+
   
 }
