@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		590B101919F7804000BEAE96 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 590B101819F7804000BEAE96 /* CoreData.framework */; };
 		5954454919F4FBD800C1BF71 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5954454819F4FBD800C1BF71 /* AddTaskViewController.swift */; };
 		597E60D819F489A400381ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60D719F489A400381ED2 /* AppDelegate.swift */; };
 		597E60DA19F489A400381ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60D919F489A400381ED2 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		590B101819F7804000BEAE96 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5954454819F4FBD800C1BF71 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		597E60D219F489A400381ED2 /* TaskIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		597E60D619F489A400381ED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				590B101919F7804000BEAE96 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +108,7 @@
 		597E60D519F489A400381ED2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				590B101819F7804000BEAE96 /* CoreData.framework */,
 				597E60D619F489A400381ED2 /* Info.plist */,
 			);
 			name = "Supporting Files";
