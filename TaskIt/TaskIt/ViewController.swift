@@ -27,26 +27,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   // Method is called everytime ViewController is presented
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
-    
-    /*
-    // Start Closure example #1
-    func sortByDate(taskOne: TaskModel, taskTwo: TaskModel) -> Bool {
-    return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
-    }
-    
-    taskArray = taskArray.sorted(sortByDate)
-    // End Closure example #1
-    */
-    
-    // Start Closure example #2
-    // Equivalent to example #1
-    baseArray[0] = baseArray[0].sorted {
-      (taskOne: TaskModel, taskTwo: TaskModel) -> Bool in
-      return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
-    }
-    // End Closure example #2
-    
-    tableView.reloadData()
   }
   
   override func didReceiveMemoryWarning() {
@@ -75,7 +55,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   // UITableViewDataSource
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return fetchResultsController.sections!.count
+    return fetchedResultsController.sections!.count
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,13 +117,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   func taskFetchRequest() -> NSFetchRequest {
     let fetchRequest             = NSFetchRequest(entityName: "TaskModel")
     let sortDescriptor           = NSSortDescriptor(key: "date", ascending: true)
-    fetchRequest.sortDescriptors = [sortDescriptor]
+    let completedDescriptor      = NSSortDescriptor(key: "completed", ascending: true)
+    fetchRequest.sortDescriptors = [completedDescriptor, sortDescriptor]
     
     return fetchRequest
   }
   
   func getFetchedResultsController() -> NSFetchedResultsController {
-    fetchedResultsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+    fetchedResultsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "completed", cacheName: nil)
     return fetchedResultsController
   }
   
