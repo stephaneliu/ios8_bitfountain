@@ -60,14 +60,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       let indexPath                           = self.tableView.indexPathForSelectedRow()
       // alternatively the following is the same
       // let indexPath = sender as NSIndexPath
-      let thisTask              = baseArray[indexPath!.section][indexPath!.row]
+      let thisTask              = fetchedResultsController.objectAtIndexPath(indexPath!) as TaskModel
       detailsVC.detailTaskModel = thisTask
-      detailsVC.mainVC          = self
     }
     else if segue.identifier == "showTaskAdd" {
       let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
-      
-      addTaskVC.mainVC = self
     }
   }
   
