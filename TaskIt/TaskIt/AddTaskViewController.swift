@@ -34,6 +34,7 @@ class AddTaskViewController: UIViewController {
   }
   
   @IBAction func addTaskButtonPressed(sender: UIButton) {
+    // save to coredata
     // UIApplication - only one instance per application and is a global context object
     let appDelegate          = (UIApplication.sharedApplication().delegate as AppDelegate)
     let managedObjectContext = appDelegate.managedObjectContext
@@ -47,6 +48,7 @@ class AddTaskViewController: UIViewController {
     
     appDelegate.saveContext()
     
+    // fetch from coredata
     var request         = NSFetchRequest(entityName: "TaskModel")
     var error:NSError?  = nil
     // & is an address location - a memory optimization feature
