@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		590B101919F7804000BEAE96 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 590B101819F7804000BEAE96 /* CoreData.framework */; };
+		590B101C19F78F7200BEAE96 /* TaskItModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 590B101A19F78F7200BEAE96 /* TaskItModel.xcdatamodeld */; };
+		590B101E19F7905900BEAE96 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590B101D19F7905900BEAE96 /* TaskModel.swift */; };
 		5954454919F4FBD800C1BF71 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5954454819F4FBD800C1BF71 /* AddTaskViewController.swift */; };
 		597E60D819F489A400381ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60D719F489A400381ED2 /* AppDelegate.swift */; };
 		597E60DA19F489A400381ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60D919F489A400381ED2 /* ViewController.swift */; };
@@ -16,7 +18,6 @@
 		597E60E219F489A400381ED2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597E60E019F489A400381ED2 /* LaunchScreen.xib */; };
 		597E60EE19F489A400381ED2 /* TaskItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60ED19F489A400381ED2 /* TaskItTests.swift */; };
 		597E60F819F48FE500381ED2 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60F719F48FE500381ED2 /* TaskCell.swift */; };
-		597E60FA19F4B3E200381ED2 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60F919F4B3E200381ED2 /* TaskModel.swift */; };
 		597E60FC19F4EBF900381ED2 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60FB19F4EBF900381ED2 /* TaskDetailViewController.swift */; };
 		597E60FE19F4F5D000381ED2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E60FD19F4F5D000381ED2 /* Date.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		590B101819F7804000BEAE96 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		590B101B19F78F7200BEAE96 /* TaskItModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskItModel.xcdatamodel; sourceTree = "<group>"; };
+		590B101D19F7905900BEAE96 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskModel.swift; path = ../TaskModel.swift; sourceTree = "<group>"; };
 		5954454819F4FBD800C1BF71 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		597E60D219F489A400381ED2 /* TaskIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		597E60D619F489A400381ED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,7 +48,6 @@
 		597E60EC19F489A400381ED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		597E60ED19F489A400381ED2 /* TaskItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItTests.swift; sourceTree = "<group>"; };
 		597E60F719F48FE500381ED2 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
-		597E60F919F4B3E200381ED2 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		597E60FB19F4EBF900381ED2 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		597E60FD19F4F5D000381ED2 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,8 +96,9 @@
 				597E60D919F489A400381ED2 /* ViewController.swift */,
 				597E60FB19F4EBF900381ED2 /* TaskDetailViewController.swift */,
 				5954454819F4FBD800C1BF71 /* AddTaskViewController.swift */,
-				597E60F919F4B3E200381ED2 /* TaskModel.swift */,
 				597E60FD19F4F5D000381ED2 /* Date.swift */,
+				590B101A19F78F7200BEAE96 /* TaskItModel.xcdatamodeld */,
+				590B101D19F7905900BEAE96 /* TaskModel.swift */,
 				597E60DB19F489A400381ED2 /* Main.storyboard */,
 				597E60F719F48FE500381ED2 /* TaskCell.swift */,
 				597E60DE19F489A400381ED2 /* Images.xcassets */,
@@ -232,11 +235,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				597E60DA19F489A400381ED2 /* ViewController.swift in Sources */,
+				590B101C19F78F7200BEAE96 /* TaskItModel.xcdatamodeld in Sources */,
 				597E60FE19F4F5D000381ED2 /* Date.swift in Sources */,
 				597E60F819F48FE500381ED2 /* TaskCell.swift in Sources */,
-				597E60FA19F4B3E200381ED2 /* TaskModel.swift in Sources */,
 				597E60D819F489A400381ED2 /* AppDelegate.swift in Sources */,
 				597E60FC19F4EBF900381ED2 /* TaskDetailViewController.swift in Sources */,
+				590B101E19F7905900BEAE96 /* TaskModel.swift in Sources */,
 				5954454919F4FBD800C1BF71 /* AddTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +447,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		590B101A19F78F7200BEAE96 /* TaskItModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				590B101B19F78F7200BEAE96 /* TaskItModel.xcdatamodel */,
+			);
+			currentVersion = 590B101B19F78F7200BEAE96 /* TaskItModel.xcdatamodel */;
+			path = TaskItModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 597E60CA19F489A400381ED2 /* Project object */;
 }
